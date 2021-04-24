@@ -26,7 +26,9 @@ namespace impulse_calc_2000
             //define some values
             double thrust = 0;
             double thrusttime;
-            double ns = (double)Int32.Parse(textBox1.Text) / 1000; //convert miliseconds entered to seconds //duplicate of thrusttime
+            string nss = Regex.Replace(textBox1.Text, "[^0-9]", ""); //replace all characters other than numbers with nothing
+            //double ns = (double)Int32.Parse(textBox1.Text) / 1000; //convert miliseconds entered to seconds //duplicate of thrusttime
+            double ns = (double) Int32.Parse(nss);
             double i = 0; //basically a less efficient duplicate of totaltime
             bool b = false;
             double previousdouble = 0;
@@ -36,11 +38,12 @@ namespace impulse_calc_2000
             {
                 foreach (var s in richTextBox1.Lines) //for each line in the textbox, process said line
                 {
-
+                    string s3 = Regex.Replace(s, "[^0-9.]", ""); //replace all characters other than numbers with nothing
                     //string line = richTextBox1.Lines[0];
-                    if (!string.IsNullOrEmpty(s)) //if the string is not empty, commence forth
+                    if (!string.IsNullOrEmpty(s3)) //if the string is not empty, commence forth
                     {
-                        string s2 = s;
+                        
+                        string s2 = s3;
                         if (s.Contains(" ") == true)
                         {
                             string[] words = s.Split(' ');
@@ -78,7 +81,8 @@ namespace impulse_calc_2000
             
             //math zone
             double g = 9.80665;
-            double timeincrement = (double) Int32.Parse(textBox1.Text) / 1000; //convert miliseconds entered to seconds
+            double timeincrement = ns;
+            //double timeincrement = (double) Int32.Parse(textBox1.Text) / 1000; //convert miliseconds entered to seconds
             double impulse = thrust * timeincrement * g; //calculate impulse from total thrust times the time increment calculated above together with the gravitational constant (g)
             thrusttime = timeincrement * richTextBox1.Lines.Count(); //calculate total time from amount of values and time increment
             double averagethrust = impulse / thrusttime; //get average thrust by dividing impulse by time
@@ -89,7 +93,9 @@ namespace impulse_calc_2000
             {
                 try
                 {
-                    double propellant = double.Parse(textBox7.Text); //get propellant weight
+                    string p = Regex.Replace(textBox7.Text, "[^0-9.]", ""); //replace all characters other than numbers with nothing
+                    //double propellant = double.Parse(textBox7.Text); //get propellant weight
+                    double propellant = double.Parse(p); //get propellant weight
                     double specificimpulse = impulse / propellant; //get specific impulse from impulse and propelland weight
                     double specificimpulsesec = specificimpulse / g; //get the specific impulse in seconds from specific impulse and g
                     textBox5.Text = specificimpulse.ToString(); //print specific impulse to textbox

@@ -28,7 +28,7 @@ namespace impulse_calc_2000
             double thrusttime;
             string nss = Regex.Replace(textBox1.Text, "[^0-9]", ""); //replace all characters other than numbers with nothing
             //double ns = (double)Int32.Parse(textBox1.Text) / 1000; //convert miliseconds entered to seconds //duplicate of thrusttime
-            double ns = (double) Int32.Parse(nss);
+            double ns = (double) Int32.Parse(nss) / 1000;
             double i = 0; //basically a less efficient duplicate of totaltime
             bool b = false;
             double previousdouble = 0;

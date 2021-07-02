@@ -1,6 +1,8 @@
 # impulse-calc-2000
  A program to calculate rocket impulse from load cell testing data, with graphing and other additional functions
 
+**DEPRICATED: New version here: https://github.com/denneth9/impulse-calc-2500**
+
 Functions:
 - Impulse calculation from kilogram values and a time interval
 - Specific impulse in newton seconds and seconds from impulse and propellant weight
